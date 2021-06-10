@@ -5,6 +5,7 @@ import Create from "../views/Create.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import NameList from "../views/NameList.vue";
+import NameDetails from "../views/NameDetails.vue";
 
 const routes = [
   {
@@ -16,6 +17,12 @@ const routes = [
     path: "/posts/:id",
     name: "Details",
     component: Details,
+    props: true,
+  },
+  {
+    path: "/names/:id",
+    name: "NameDetails",
+    component: NameDetails,
     props: true,
   },
   {

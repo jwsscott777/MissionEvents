@@ -48,6 +48,7 @@ export default {
 <style scoped>
 .signup-form {
   height: 120vh;
+  padding: 25px;
   background-color: #171e29;
 }
 .signup-form label {

@@ -1,52 +1,40 @@
 <template>
   <div class="name-list">
     <div v-for="name in names" :key="name.id">
-      <h4>
-        {{ name.name }} <span class="span">signed up for</span>
-        {{ name.date }} @
-        {{ name.time }}
-      </h4>
+      <SingleName :name="name" />
     </div>
-    <button @click="handleDelete">Delete Class</button>
   </div>
 </template>
 
 <script>
-import { useRoute, useRouter } from "vue-router";
 import getNames from "../composables/getNames";
-import { projectFirestore } from "../firebase/config";
+import SingleName from "../components/SingleName.vue";
 export default {
   name: "NameList",
+  components: { SingleName },
   props: ["id"],
   setup(props) {
-    const route = useRoute();
-    const router = useRouter();
     const { names, error, loadNames } = getNames(props.id);
 
     loadNames();
 
-    const handleDelete = async () => {
-      await projectFirestore
-        .collection("names")
-        .doc(props.id)
-        .delete();
-      router.push("/");
-    };
-
-    return { names, error, handleDelete };
+    return { names, error };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .name-list {
   margin: 0, auto;
   padding: 10px;
   color: orange;
   background-color: #171e29;
-  height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.span {
-  color: #0093ee;
+button {
+  border-radius: 20px;
 }
 </style>

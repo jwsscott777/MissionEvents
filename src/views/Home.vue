@@ -36,6 +36,6 @@ export default {
 .home {
   margin: 0, auto;
   padding: 10px;
-  background-color: #273142;
+  background-color: #171e29;
 }
 </style>
