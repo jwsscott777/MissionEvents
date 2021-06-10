@@ -3,6 +3,7 @@
     <h1>Mission Events</h1>
     <nav>
       <router-link :to="{ name: 'Home' }">Home</router-link>
+      <router-link :to="{ name: 'NameList' }">Class List</router-link>
       <router-link v-if="isAdmin" :to="{ name: 'Create' }"
         >Create Event</router-link
       >
@@ -15,7 +16,7 @@
 import { ref } from "@vue/reactivity";
 export default {
   setup() {
-    const isAdmin = ref(true);
+    const isAdmin = ref(false);
 
     return { isAdmin };
   },

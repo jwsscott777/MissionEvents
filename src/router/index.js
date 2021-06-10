@@ -4,6 +4,7 @@ import Details from "../views/Details.vue";
 import Create from "../views/Create.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
+import NameList from "../views/NameList.vue";
 
 const routes = [
   {
@@ -31,6 +32,13 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup,
+    props: true,
+  },
+  {
+    path: "/nameList",
+    name: "NameList",
+    component: NameList,
+    props: true,
   },
 ];
 

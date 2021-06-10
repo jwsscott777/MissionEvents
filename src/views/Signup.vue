@@ -3,21 +3,54 @@
     <img alt="Vue logo" src="../assets/logo3.png" />
     <h1>Sign up for the class</h1>
     <form @submit.prevent="handleSubmit">
-      <input type="text" required placeholder="Enter Name" v-model="name" />\
+      <label>Enter Your Name</label>
+      <input type="text" required v-model="name" />
+      <label>Enter the Date</label>
+      <input type="text" required v-model="date" />
+      <label>Enter the Time</label>
+      <input type="text" required v-model="time" />
       <button>Sign up</button>
     </form>
   </div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { projectFirestore } from "../firebase/config";
 export default {
   name: "Signup",
+  setup() {
+    const name = ref("");
+    const date = ref("");
+    const time = ref("");
+
+    const router = useRouter();
+
+    const handleSubmit = async () => {
+      const addName = {
+        name: name.value,
+        date: date.value,
+        time: time.value,
+      };
+      console.log("clicked");
+      const res = await projectFirestore.collection("names").add(addName);
+      console.log(res);
+
+      router.push({ name: "Home" });
+    };
+
+    return { name, date, time, handleSubmit };
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .signup-form {
-  height: 80vh;
+  height: 120vh;
   background-color: #171e29;
+}
+.signup-form label {
+  color: orange;
 }
 </style>
