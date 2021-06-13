@@ -26,8 +26,9 @@ export default {
 <style scoped>
 .name-list {
   margin: 0, auto;
-  padding: 10px;
+  padding: 20px;
   color: orange;
+  min-height: 80vh;
   background-color: #171e29;
 
   display: flex;

@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .name-card {
-  padding: 20px;
+  padding: 10px;
   width: 250px;
   cursor: pointer;
   background-color: #ffc02a;

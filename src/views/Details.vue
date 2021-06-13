@@ -7,7 +7,7 @@
       <p class="pre">{{ post.description }}</p>
       <p>{{ post.location }}</p>
       <p>{{ post.date }} @ {{ post.time }}</p>
-      <button v-if="isAdmin" @click="handleClick" class="delete">
+      <button v-if="user" @click="handleClick" class="delete">
         Delete Event
       </button>
       <button v-else @click="handleSignup" class="signup">Signup</button>
@@ -20,6 +20,7 @@
 
 <script>
 import getPost from "../composables/getPost";
+import getUser from "../composables/getUser";
 import Spinner from "../components/Spinner.vue";
 import { projectFirestore } from "../firebase/config";
 import { useRouter } from "vue-router";
@@ -31,8 +32,7 @@ export default {
   setup(props) {
     const router = useRouter();
     const { post, error, load } = getPost(props.id);
-
-    const isAdmin = false;
+    const { user } = getUser();
 
     load();
 
@@ -49,7 +49,7 @@ export default {
       router.push("/signup");
     };
 
-    return { post, error, handleClick, handleSignup, isAdmin };
+    return { post, error, handleClick, handleSignup, user };
   },
 };
 </script>
@@ -57,11 +57,12 @@ export default {
 <style>
 .details {
   background-color: #171e29;
+  padding: 20px;
 }
 .post {
   max-width: 1200px;
   margin: 0 auto;
-  height: 80vh;
+  min-height: 80vh;
 }
 .post p {
   color: #444;

@@ -1,24 +1,41 @@
 <template>
   <header>
-    <h1>Mission Events</h1>
+    <h1 v-if="user">Admin Page</h1>
+    <h1 v-else>Mission Events</h1>
     <nav>
       <router-link :to="{ name: 'Home' }">Home</router-link>
       <router-link :to="{ name: 'NameList' }">Class List</router-link>
-      <router-link v-if="isAdmin" :to="{ name: 'Create' }"
+      <router-link v-if="user" :to="{ name: 'Create' }"
         >Create Event</router-link
       >
+      <button v-if="user" @click="handleLogout" class="logout">
+        Log Out
+      </button>
       <router-link v-else :to="{ name: 'Login' }">Admin</router-link>
     </nav>
   </header>
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import Login from "../views/Login.vue";
+import useLogout from "../composables/useLogout";
+import getUser from "../composables/getUser";
 export default {
+  components: {
+    Login,
+  },
   setup() {
-    const isAdmin = ref(false);
+    const { logout, error } = useLogout();
+    const { user } = getUser();
 
-    return { isAdmin };
+    const handleLogout = async () => {
+      await logout();
+      if (!error.value) {
+        console.log("logged out");
+      }
+    };
+
+    return { handleLogout, user };
   },
 };
 </script>
@@ -42,5 +59,8 @@ header a {
 header a.router-link-active {
   color: #ffb610;
   font-weight: bold;
+}
+.logout {
+  margin-left: 120px;
 }
 </style>

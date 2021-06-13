@@ -4,8 +4,10 @@
     <div v-if="error">{{ error }}</div>
     <div v-if="name" class="name">
       <h4>{{ name.name }}</h4>
+      <h3>Signed Up</h3>
       <p>{{ name.date }} @ {{ name.time }}</p>
-      <button @click="handleClick" class="delete">
+      <p>See you there</p>
+      <button v-if="user" @click="handleClick" class="delete">
         Delete Name
       </button>
     </div>
@@ -17,6 +19,7 @@
 
 <script>
 import getName from "../composables/getName";
+import getUser from "../composables/getUser";
 import Spinner from "../components/Spinner.vue";
 import { projectFirestore } from "../firebase/config";
 import { useRouter } from "vue-router";
@@ -28,6 +31,7 @@ export default {
   setup(props) {
     const router = useRouter();
     const { name, error, loadName } = getName(props.id);
+    const { user } = getUser();
 
     loadName();
 
@@ -40,21 +44,21 @@ export default {
       router.push("/NameList");
     };
 
-    return { name, error, handleClick, getName };
+    return { name, error, handleClick, getName, user };
   },
 };
 </script>
 
 <style>
-.details {
+.name-details {
   background-color: #171e29;
 }
-.post {
+.name {
   max-width: 1200px;
   margin: 0 auto;
-  height: 80vh;
+  min-height: 80vh;
 }
-.post p {
+.name p {
   color: #444;
   line-height: 1.5rem;
   margin-top: 40px;

@@ -20,28 +20,37 @@
 <script>
 import { ref } from "@vue/reactivity";
 import useLogin from "../composables/useLogin";
+import { useRouter } from "vue-router";
 export default {
   name: "Login",
-  setup() {
+  props: ["isAdmin"],
+  setup(props, context) {
     const email = ref("");
     const password = ref("");
+    const router = useRouter();
+    const isAdmin = ref(Boolean);
 
     const { error, login } = useLogin();
 
     const handleSubmit = async () => {
       await login(email.value, password.value);
       if (!error.value) {
+        isAdmin.value = true;
         console.log("user logged in");
+        context.emit("login");
+        router.push("/");
+      } else {
+        isAdmin.value = false;
       }
     };
-    return { email, password, handleSubmit, error };
+    return { email, password, handleSubmit, error, isAdmin };
   },
 };
 </script>
 
 <style>
 .login {
-  height: 80vh;
+  min-height: 80vh;
   padding: 20px;
   background-color: #171e29;
 }

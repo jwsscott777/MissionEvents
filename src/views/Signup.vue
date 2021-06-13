@@ -37,7 +37,7 @@ export default {
       const res = await projectFirestore.collection("names").add(addName);
       console.log(res);
 
-      router.push({ name: "Home" });
+      router.push({ name: "NameList" });
     };
 
     return { name, date, time, handleSubmit };
@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .signup-form {
-  height: 120vh;
+  min-height: 80vh;
   padding: 25px;
   background-color: #171e29;
 }

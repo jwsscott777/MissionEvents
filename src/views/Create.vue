@@ -19,7 +19,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
-import { projectFirestore } from "../firebase/config";
+import { projectFirestore, timestamp } from "../firebase/config";
 export default {
   setup() {
     const title = ref("");
@@ -37,6 +37,7 @@ export default {
         local: local.value,
         date: date.value,
         time: time.value,
+        createdAt: timestamp(),
       };
 
       const res = await projectFirestore.collection("posts").add(post);
@@ -51,16 +52,18 @@ export default {
 
 <style>
 .create {
-  background-color: #5e91da;
+  background-color: #171e29;
 }
 form {
   max-width: 480px;
   margin: 0 auto;
   text-align: left;
+  padding: 20px;
 }
 input,
 textarea {
   display: block;
+  background-color: antiquewhite;
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
@@ -75,7 +78,7 @@ label {
   margin-top: 30px;
   position: relative;
   font-size: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
   margin-bottom: 10px;
 }
 label::before {
@@ -83,7 +86,6 @@ label::before {
   display: block;
   width: 100%;
   height: 100%;
-  background: #ff8800;
   position: absolute;
   z-index: -1;
   padding-right: 40px;
