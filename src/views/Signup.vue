@@ -1,6 +1,6 @@
 <template>
   <div class="signup-form">
-    <img alt="Vue logo" src="../assets/logo3.png" />
+    <img alt="Vue logo" src="../assets/mission.png" />
     <h1>Sign up for the class</h1>
     <form @submit.prevent="handleSubmit">
       <label>Enter Your Name</label>
@@ -48,10 +48,15 @@ export default {
 <style scoped>
 .signup-form {
   min-height: 80vh;
-  padding: 25px;
+  padding: 5px;
   background-color: #171e29;
 }
 .signup-form label {
   color: orange;
+}
+.signup-form img {
+  margin: 0 auto;
+
+  display: block 20px;
 }
 </style>

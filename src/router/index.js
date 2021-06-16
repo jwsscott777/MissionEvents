@@ -6,6 +6,7 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import NameList from "../views/NameList.vue";
 import NameDetails from "../views/NameDetails.vue";
+import Weather from "../views/Weather.vue";
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     name: "NameList",
     component: NameList,
     props: true,
+  },
+  {
+    path: "/weather",
+    name: "Weather",
+    component: Weather,
   },
 ];
 

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo3.png" />
+    <button @click="goWeather" class="weatherButton">Get Weather</button>
+    <img alt="Vue logo" src="../assets/mission.png" />
     <div v-if="error">{{ error }}</div>
     <div v-if="posts.length">
       <PostList :posts="posts" />
@@ -12,10 +13,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import PostList from "@/components/PostList.vue";
 import getPosts from "../composables/getPosts";
 import Spinner from "../components/Spinner.vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Home",
@@ -25,9 +26,15 @@ export default {
   },
   setup() {
     const { posts, error, load } = getPosts();
+    const router = useRouter();
+
+    const goWeather = () => {
+      router.push({ name: "Weather" });
+    };
 
     load();
-    return { posts, error };
+
+    return { posts, error, goWeather };
   },
 };
 </script>
@@ -35,7 +42,19 @@ export default {
 <style>
 .home {
   margin: 0, auto;
-  padding: 10px;
+  padding: 5px;
   background-color: #171e29;
+}
+.weatherButton {
+  padding: 10;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  border-radius: 20px;
+}
+img {
+  padding: 25px;
+  margin: 0 auto;
 }
 </style>

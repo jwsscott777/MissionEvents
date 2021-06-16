@@ -8,10 +8,12 @@
       <router-link v-if="user" :to="{ name: 'Create' }"
         >Create Event</router-link
       >
-      <button v-if="user" @click="handleLogout" class="logout">
-        Log Out
-      </button>
-      <router-link v-else :to="{ name: 'Login' }">Admin</router-link>
+      <div class="admin">
+        <button v-if="user" @click="handleLogout" class="logout">
+          Log Out
+        </button>
+        <router-link v-else :to="{ name: 'Login' }">Admin</router-link>
+      </div>
     </nav>
   </header>
 </template>
@@ -61,6 +63,12 @@ header a.router-link-active {
   font-weight: bold;
 }
 .logout {
-  margin-left: 120px;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: block;
+  border-radius: 20px;
+}
+.admin {
+  margin-top: 10px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <img alt="Vue logo" src="../assets/logo3.png" />
+    <img alt="Vue logo" src="../assets/mission.png" />
     <h1>Admin Login</h1>
 
     <form @submit.prevent="handleSubmit">

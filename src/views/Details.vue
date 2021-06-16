@@ -1,6 +1,6 @@
 <template>
   <div class="details">
-    <img alt="Vue logo" src="../assets/logo3.png" />
+    <img alt="Vue logo" src="../assets/mission.png" />
     <div v-if="error">{{ error }}</div>
     <div v-if="post" class="post">
       <h4>{{ post.title }}</h4>
@@ -57,7 +57,7 @@ export default {
 <style>
 .details {
   background-color: #171e29;
-  padding: 20px;
+  padding: 5px;
 }
 .post {
   max-width: 1200px;

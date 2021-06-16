@@ -1,6 +1,6 @@
 <template>
   <div class="name-details">
-    <img alt="Vue logo" src="../assets/logo3.png" />
+    <img alt="Vue logo" src="../assets/mission.png" />
     <div v-if="error">{{ error }}</div>
     <div v-if="name" class="name">
       <h4>{{ name.name }}</h4>
