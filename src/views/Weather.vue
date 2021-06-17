@@ -4,7 +4,8 @@
     <div v-if="forecast" class="weather-card">
       <h2>Davie, Fl</h2>
       <h1>{{ forecast.current.temp }} Deg F</h1>
-      <h2>Weather conditions:</h2>
+      <h2>{{ forecast.hourly[0].humidity }} % Humidity</h2>
+      <h2>Weather Conditions:</h2>
       <div class="icons">
         {{ descriptions[forecast.current.weather[0].description] }}
       </div>
@@ -26,8 +27,12 @@ export default {
         "scattered clouds": "💨",
         "broken clouds": "⛅️",
         "shower rain": "🌧",
-        "rain ": "💦",
-        "thunderstorm ": "⛈",
+        "light rain": "💦",
+        "light thunderstorm ": "⛈",
+        "heavy thunderstorm": "⛈",
+        "drizzle rain": "🌧",
+        "moderate rain": "🌨",
+        "extreme rain": "🌨",
       },
     };
   },

@@ -7,12 +7,10 @@
       <h3>Signed Up</h3>
       <p>{{ name.date }} @ {{ name.time }}</p>
       <p>See you there</p>
+
       <button v-if="user" @click="handleClick" class="delete">
         Delete Name
       </button>
-    </div>
-    <div v-else>
-      <Spinner />
     </div>
   </div>
 </template>
@@ -20,14 +18,10 @@
 <script>
 import getName from "../composables/getName";
 import getUser from "../composables/getUser";
-import Spinner from "../components/Spinner.vue";
 import { projectFirestore } from "../firebase/config";
 import { useRouter } from "vue-router";
 export default {
   props: ["id"],
-  component: {
-    Spinner,
-  },
   setup(props) {
     const router = useRouter();
     const { name, error, loadName } = getName(props.id);

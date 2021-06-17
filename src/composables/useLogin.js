@@ -13,7 +13,8 @@ const login = async (email, password) => {
     return res;
   } catch (err) {
     console.log(err.value);
-    error.value = "Incorrect Credentials";
+    error.value = "You chose the wrong mission... Click Home to escape";
+    setTimeout(() => (error.value = false), 3000);
   }
 };
 

@@ -17,7 +17,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
-import { projectFirestore } from "../firebase/config";
+import { projectFirestore, timestamp } from "../firebase/config";
 export default {
   name: "Signup",
   setup() {
@@ -32,6 +32,7 @@ export default {
         name: name.value,
         date: date.value,
         time: time.value,
+        createdAt: timestamp(),
       };
       console.log("clicked");
       const res = await projectFirestore.collection("names").add(addName);

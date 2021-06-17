@@ -7,7 +7,10 @@ const getNames = () => {
 
   const loadNames = async () => {
     try {
-      const res = await projectFirestore.collection("names").get();
+      const res = await projectFirestore
+        .collection("names")
+        .orderBy("createdAt")
+        .get();
 
       names.value = res.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };

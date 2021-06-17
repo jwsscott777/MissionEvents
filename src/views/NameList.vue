@@ -1,20 +1,25 @@
 <template>
-  <div class="name-list">
+  <div v-if="names.length" class="name-list">
     <transition-group appear @before-enter="beforeEnter" @enter="enter">
       <div v-for="(name, index) in names" :key="name.id" :data-index="index">
         <SingleName :name="name" />
       </div>
     </transition-group>
   </div>
+  <div v-else>
+    <Spinner class="spinner" />
+    <h1>No sign ups yet</h1>
+  </div>
 </template>
 
 <script>
 import getNames from "../composables/getNames";
 import SingleName from "../components/SingleName.vue";
+import Spinner from "../components/Spinner.vue";
 import gsap from "gsap";
 export default {
   name: "NameList",
-  components: { SingleName },
+  components: { SingleName, Spinner },
   props: ["id"],
   setup(props) {
     const { names, error, loadNames } = getNames(props.id);
@@ -53,5 +58,8 @@ export default {
 }
 button {
   border-radius: 20px;
+}
+.spinner {
+  background-color: #02070f;
 }
 </style>
