@@ -5,13 +5,22 @@
     <div v-if="post" class="post">
       <h4>{{ post.title }}</h4>
       <p class="pre">{{ post.description }}</p>
-      <p>{{ post.location }}</p>
+      <h2>{{ post.local }}</h2>
       <p>{{ post.date }} @ {{ post.time }}</p>
+      <h3>
+        Please click acknowledgement button before signup to access the waiver
+        form
+      </h3>
+      <button @click="redirect('https://www.missionmovement.life')" class="ack">
+        Acknowledgement
+      </button>
+      <p>If you already acknowledged the waiver, proceed to signup</p>
       <button v-if="user" @click="handleClick" class="delete">
         Delete Event
       </button>
       <button v-else @click="handleSignup" class="signup">Signup</button>
     </div>
+
     <div v-else>
       <Spinner />
     </div>
@@ -48,13 +57,16 @@ export default {
     const handleSignup = () => {
       router.push("/signup");
     };
+    const redirect = (link, target = "_blank") => {
+      window.open(link, target);
+    };
 
-    return { post, error, handleClick, handleSignup, user };
+    return { post, error, handleClick, handleSignup, user, redirect };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .details {
   background-color: #171e29;
   padding: 5px;
@@ -66,6 +78,7 @@ export default {
 }
 .post p {
   color: #444;
+  padding: 0px 20px 0px 20px;
   line-height: 1.5rem;
   margin-top: 40px;
   margin-bottom: 60px;
@@ -74,12 +87,24 @@ export default {
 .pre {
   white-space: pre-wrap;
 }
+h3,
+p {
+  padding: 0px 20px 0px 20px;
+}
 button.delete {
   margin: 10px auto;
   border-radius: 20px;
 }
 button.signup {
   margin: 10px auto;
+  margin-bottom: 25px;
   border-radius: 20px;
+}
+.ack {
+  margin: 10px auto;
+  margin-bottom: 80px;
+  border-radius: 20px;
+  background-color: darkgrey;
+  color: black;
 }
 </style>

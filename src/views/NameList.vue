@@ -6,7 +6,7 @@
       </div>
     </transition-group>
   </div>
-  <div v-else>
+  <div v-else class="spinBack">
     <Spinner class="spinner" />
     <h1>No sign ups yet</h1>
   </div>
@@ -60,6 +60,11 @@ button {
   border-radius: 20px;
 }
 .spinner {
-  background-color: #02070f;
+  background-color: #0f5de6;
+}
+.spinBack {
+  background-color: #171e29;
+  padding-top: 20px;
+  min-height: 80vh;
 }
 </style>
