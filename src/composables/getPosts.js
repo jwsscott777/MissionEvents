@@ -8,7 +8,7 @@ const getPosts = () => {
     try {
       const res = await projectFirestore
         .collection("posts")
-        .orderBy("createdAt")
+        .orderBy("createdAt", "desc")
         .get();
 
       posts.value = res.docs.map((doc) => {

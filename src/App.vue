@@ -25,6 +25,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #0a7ef1;
+  overflow: hidden;
 }
 h4 {
   font-size: 20px;
