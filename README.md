@@ -2,7 +2,8 @@
 
 ## Project setup
 A FireBase / Config.js file will need to be created with an api key.
-A weather.js file will also need to be created with an api key
+A weather.js file will also need to be created with an api key.
+...
 yarn install
 ```
 
